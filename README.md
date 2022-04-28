@@ -1,6 +1,7 @@
 # LeanNotebookSystem
 The aim of this project is to create a notebook system much like `Jupyter Notebook` for writing formal proofs in `lean`.
 
+The notebook repo can be found here: `https://github.com/FreddyFozzyFilms/lean-notebook`
 # Core Features:
 1. `lean` code can be split up over multiple cells
 2. If a cell consists only of comments, it is treated as a text cell and rendered in `latex`
