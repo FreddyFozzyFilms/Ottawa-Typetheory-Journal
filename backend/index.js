@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require("cors")
 const app = express();
-var {exec, spawn} = require('child_process')
 
 //apple
 
@@ -23,16 +22,25 @@ app.use(cors(corsOptions))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
-app.post('/api/leancompiler', (req, res) => {
+app.post('/api/ping', (req, res) => {
     console.log(req.body);
     return res.json(req.body);
 });
 
+// exec bash scripts
+var {exec, spawn} = require('child_process')
+// show files in directory
 app.get('/api/ls', (req, res) => {
     exec('ls', function(err, stdout, stderr){
         if (err) console.error(stderr);
         res.send(stdout);
     });
+})
+app.post('/api/leanserver', (req, res) => {
+  exec('bash test.sh', function(err, stdout, stderr){
+    if (err) console.error(stderr);
+    console.log(stdout);
+  });
 })
 
 
