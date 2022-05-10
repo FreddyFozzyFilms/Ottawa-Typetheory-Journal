@@ -1,3 +1,5 @@
-#!bin/bash
+#!/bin/bash
+
+# hardcoded sample leanserver call shown below
 cd leanproj
-echo '{ "command": "info", "file_name": "./src/test.lean", "line": 3, "column": 11, "seq_num": 2}' | lean --server
+lean ./src/test.lean

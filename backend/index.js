@@ -36,10 +36,22 @@ app.get('/api/ls', (req, res) => {
         res.send(stdout);
     });
 })
-app.post('/api/leanserver', (req, res) => {
+
+const fs = require('fs');
+app.post('/api/leancompiler', (req, res) => {
+
+  // write to test.lean file
+  fs.writeFile('./leanproj/src/test.lean', req.body.code, err => {
+    if (err) {
+      console.error(err);
+    }
+    // file written successfully
+  });
+
+  // run the lean compiler on the test file
   exec('bash test.sh', function(err, stdout, stderr){
     if (err) console.error(stderr);
-    console.log(stdout);
+    res.json({stdout});
   });
 })
 
