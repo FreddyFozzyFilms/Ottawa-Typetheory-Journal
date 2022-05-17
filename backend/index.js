@@ -23,38 +23,25 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 app.post('/api/ping', (req, res) => {
-    console.log(req.body);
-    return res.json(req.body);
+  console.log(req.body);
+  return res.json(req.body);
 });
 
-// exec bash scripts
-var {exec, spawn} = require('child_process')
-// show files in directory
-app.get('/api/ls', (req, res) => {
-    exec('ls', function(err, stdout, stderr){
-        if (err) console.error(stderr);
-        res.send(stdout);
+const leanCompilerRoute = require('./routes/LeanCompiler')
+app.use('/api', leanCompilerRoute)
+
+const server = require('http').createServer(app)
+const WebSocket = require('ws')
+const wss = new WebSocket.Server({server: server})
+
+wss.on('connection', function connection(ws){
+    console.log('new client connection')
+    ws.send('hello banan')
+
+    ws.on('message', function incoming(message){
+        ws.send('hello %s', message)
     });
-})
-
-const fs = require('fs');
-app.post('/api/leancompiler', (req, res) => {
-
-  // write to test.lean file
-  fs.writeFile('./leanproj/src/test.lean', req.body.code, err => {
-    if (err) {
-      console.error(err);
-    }
-    // file written successfully
-  });
-
-  // run the lean compiler on the test file
-  exec('bash test.sh', function(err, stdout, stderr){
-    if (err) console.error(stderr);
-    res.json({stdout});
-  });
-})
-
+});
 
 // PORT settings through Command Line
 const port = process.env.PORT || 8000;
