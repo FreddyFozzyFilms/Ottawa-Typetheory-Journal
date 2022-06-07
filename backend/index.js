@@ -2,7 +2,8 @@ const express = require('express');
 const cors = require("cors")
 const app = express();
 
-//apple
+const leanCompilerRoute = require('./routes/LeanCompiler')
+const userData = require('./routes/UserData')
 
 // white list
 const whitelist = ["http://localhost:3000"]
@@ -27,21 +28,8 @@ app.post('/api/ping', (req, res) => {
   return res.json(req.body);
 });
 
-const leanCompilerRoute = require('./routes/LeanCompiler')
 app.use('/api', leanCompilerRoute)
-
-const server = require('http').createServer(app)
-const WebSocket = require('ws')
-const wss = new WebSocket.Server({server: server})
-
-wss.on('connection', function connection(ws){
-    console.log('new client connection')
-    ws.send('hello banan')
-
-    ws.on('message', function incoming(message){
-        ws.send('hello %s', message)
-    });
-});
+app.use('/api/notebook', userData)
 
 // PORT settings through Command Line
 const port = process.env.PORT || 8000;

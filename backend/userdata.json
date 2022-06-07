@@ -1,0 +1,20 @@
+{
+    "userdata": [
+        {
+            "cells": [
+                {
+                    "mode": "stex",
+                    "value": "We aim to prove $P \\wedge Q \\rightarrow Q \\wedge P$\\\nWe first assume $P \\wedge Q$ and then show that $Q \\wedge P$ is true.\\\nSince $P \\wedge Q$ is true, $P$ (1) and $Q$ (2) are individually true.\\\nTo prove the goal $Q \\wedge P$ we must first prove $Q$ and then prove $P$.\\\nFrom (2) $Q$ is true.\nFrom (1) $P$ is true.\\\nThus, QED.",
+                    "id": 1
+                },
+                {
+                    "mode": "lean",
+                    "value": "theorem and_commutative (P Q : Prop) : P /\\ Q -> Q /\\ P :=\nbegin\nintro pq,\ncases pq with p q,\nsplit,\nexact q, exact p,\nend",
+                    "id": 0
+                }
+            ],
+            "name": "and_commutative",
+            "id": 0
+        }
+    ]
+}
