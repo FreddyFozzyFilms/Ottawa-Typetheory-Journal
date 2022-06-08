@@ -37,12 +37,14 @@ router.post('/write', (req, res) => {
     });
 })
 
-router.post('/modify', (req, res) => {
+router.post('/modify/:id', (req, res) => {
     fs.readFile('./userdata.json', 'utf8', (err, raw_data) => {
         
         if (err) { console.error(err); return; }
+
         const data = JSON.parse(raw_data);
-        data.userdata[parseInt(req.body.id)] = req.body.notebook;
+        console.log({...req.body, id:data.length});
+        data.userdata[req.params.id] = {...req.body, id:parseInt(req.params.id)};
         
         fs.writeFile('./userdata.json', JSON.stringify(data), err => {
             if (err) {console.error(err);}
