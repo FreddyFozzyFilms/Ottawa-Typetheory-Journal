@@ -3,6 +3,21 @@ const router = express.Router()
 
 const fs = require('fs')
 
+// read all of the cells
+router.get('/read', (req, res) => {
+    fs.readFile('./userdata.json', 'utf8', (err, raw_data) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        const data = JSON.parse(raw_data);
+        res.send(data);
+
+        return;
+    });
+})
+
+// read one cell
 router.get('/read/:id', (req, res) => {
     fs.readFile('./userdata.json', 'utf8', (err, raw_data) => {
         if (err) {
@@ -11,7 +26,6 @@ router.get('/read/:id', (req, res) => {
         }
         const data = JSON.parse(raw_data);
         res.send(data.userdata[req.params.id]);
-        //res.send(data.userdata[parseInt(req.params.id)]);
         return;
     });
 })
