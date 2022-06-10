@@ -9,7 +9,7 @@
                 },
                 {
                     "mode": "lean",
-                    "value": "theorem and_commutative (P Q : Prop) : P /\\ Q -> Q /\\ P :=\nbegin\nintro pq,\ncases pq with p q,\nsplit,\nexact q, exact p,\nend",
+                    "value": "theorem and_commutative (P Q : Prop) : P /\\ Q -> Q /\\ P :=\nbegin\nintro pq,\ncases pq with p q,\nsplit,\nexact q, exact p,\nend\n",
                     "id": 0
                 }
             ],
@@ -19,8 +19,13 @@
         {
             "cells": [
                 {
+                    "mode": "stex",
+                    "value": "# $e^{i\\pi}$",
+                    "id": 1
+                },
+                {
                     "mode": "lean",
-                    "value": "#eval 2+2=4",
+                    "value": "#eval 2+2=4\n",
                     "id": 0
                 }
             ],
