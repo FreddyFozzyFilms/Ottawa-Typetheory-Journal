@@ -1,3 +1,8 @@
+// Copyright (c) 2022 FreddyFozzyFilms. All rights reserved.
+// Released under MIT license as described in the file LICENSE.
+// Authors: Frederick Pu
+// Defines REST commands for changing notebook data (for the gallery)
+
 const express = require('express')
 const router = express.Router()
 

@@ -1,3 +1,8 @@
+// Copyright (c) 2022 FreddyFozzyFilms. All rights reserved.
+// Released under MIT license as described in the file LICENSE.
+// Authors: Frederick Pu
+// Defines leancompiler REST commands (for the lean-notebook)
+
 const express = require('express')
 const router = express.Router()
 
@@ -13,6 +18,8 @@ router.get('/ls', (req, res) => {
 
 const fs = require('fs');
 router.post('/leancompiler', (req, res) => {
+
+  console.log(req.body.code)
 
   // write to test.lean file
   fs.writeFile('./leanproj/src/test.lean', req.body.code, err => {

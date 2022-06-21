@@ -1,3 +1,8 @@
+// Copyright (c) 2022 FreddyFozzyFilms. All rights reserved.
+// Released under MIT license as described in the file LICENSE.
+// Authors: Frederick Pu
+// Defines all main routes for the application backend.
+
 const express = require('express');
 const cors = require("cors")
 const app = express();
